@@ -1,4 +1,4 @@
-package com.faiz.learn;
+package com.faiz.learn.model;
 
 public class Book {
 

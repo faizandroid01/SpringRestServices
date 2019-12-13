@@ -1,9 +1,11 @@
-package com.faiz.learn;
+package com.faiz.learn.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
+
+import com.faiz.learn.model.Book;
 
 @Component
 public class BookService {
