@@ -1,4 +1,4 @@
-package exception;
+package com.faiz.learn.exception;
 
 import java.util.Date;
 
@@ -25,6 +25,18 @@ public class GenericExceptionModel {
 
 	public String getDetails() {
 		return details;
+	}
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	public void setExceptionMsg(String exceptionMsg) {
+		this.exceptionMsg = exceptionMsg;
+	}
+
+	public void setDetails(String details) {
+		this.details = details;
 	}
 
 }

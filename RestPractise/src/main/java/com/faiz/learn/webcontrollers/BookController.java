@@ -12,17 +12,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.faiz.learn.exception.ResourceNotFoundException;
 import com.faiz.learn.model.Book;
 import com.faiz.learn.model.Message;
 import com.faiz.learn.service.BookService;
-
-import exception.UserNotFoundException;
 
 @RestController
 public class BookController {
 
 	@Autowired
-	private BookService service;
+	private BookService userService;
 
 	@GetMapping(path = "/message")
 	public Message getMessage() {
@@ -36,23 +35,22 @@ public class BookController {
 
 	@GetMapping(path = "/books")
 	public List<Book> getAllBooks() {
-		return service.getBooks();
+		return userService.getBooks();
 	}
 
 	@GetMapping(path = "/books/{id}")
 	public Book getAllBooks(@PathVariable int id) {
-		Book retrievedBook = service.getBookWith(id);
+		Book retrievedBook = userService.getBookWith(id);
 		if (retrievedBook == null) {
-			throw new UserNotFoundException("Book id " + id + " not exists.");
+			throw new ResourceNotFoundException("Book id " + id + " not exists.");
 		}
 		return retrievedBook;
 	}
-	
 
 	@PostMapping(path = "/books")
 	public ResponseEntity<Object> savebook(@RequestBody Book book) {
 
-		Book savedBook = service.save(book);
+		Book savedBook = userService.save(book);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(savedBook.getBookId()).toUri();
