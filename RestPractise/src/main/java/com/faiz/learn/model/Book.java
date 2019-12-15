@@ -1,9 +1,13 @@
 package com.faiz.learn.model;
 
+import javax.validation.constraints.Size;
+
 public class Book {
 
 	int bookId;
+	@Size(min = 2, message = "Name should have atleast 2 character .")
 	String bookName;
+	@Size(min = 5)
 	String BookAuthor;
 
 	public Book() {

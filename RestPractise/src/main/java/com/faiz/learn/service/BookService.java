@@ -1,6 +1,7 @@
 package com.faiz.learn.service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ import com.faiz.learn.model.Book;
 public class BookService {
 
 	private static List<Book> books = new ArrayList<Book>();
-	private static int bookCount = 3;
+	private static int bookCount = 4;
 
 	static {
 
@@ -46,6 +47,22 @@ public class BookService {
 
 		books.add(book);
 		return book;
+	}
+
+	public Book deleteById(int id) {
+
+		Iterator<Book> iter = books.iterator();
+
+		while (iter.hasNext()) {
+			Book book = iter.next();
+			if (book.getBookId() == id) {
+				iter.remove();
+				return book;
+			}
+		}
+
+		return null;
+
 	}
 
 }

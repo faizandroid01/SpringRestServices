@@ -27,7 +27,6 @@ public class ChaptersController {
 	@GetMapping(value = "/getChapters/{bookId}")
 	public List<Integer> getChaptersFor(@PathVariable int bookId) {
 
-		// if (Objects.requireNonNull(bookService.getBookWith(bookId)) == null)
 		if (bookService.getBookWith(bookId) == null)
 			throw new ResourceNotFoundException("Book id " + bookId + " not exists.");
 
