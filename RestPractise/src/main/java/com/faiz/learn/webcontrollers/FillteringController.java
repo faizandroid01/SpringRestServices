@@ -22,23 +22,18 @@ public class FillteringController {
 	}
 
 	@GetMapping("/filterFromList")
-	public List<DynamicFilterBean> getBeanList() {
-		return Arrays.asList(new DynamicFilterBean("Val1", "Val2", "Val3"),
-				new DynamicFilterBean("Val12", "Val22", "Val32"));
+	public List<FilterBean> getBeanList() {
+		return Arrays.asList(new FilterBean("Val1", "Val2", "Val3"), new FilterBean("Val12", "Val22", "Val32"));
 	}
 
 	@GetMapping("/dynamicFiltering")
 	public MappingJacksonValue retrieveBinDynamically() {
 
 		DynamicFilterBean bean = new DynamicFilterBean("field 1", "filed 2", "field 3");
-
 		SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("val1", "val2");
-
 		FilterProvider filters = new SimpleFilterProvider().addFilter("DynamicFiltering", filter);
-
 		MappingJacksonValue mappingJackson = new MappingJacksonValue(bean);
 		mappingJackson.setFilters(filters);
-
 		return mappingJackson;
 
 	}

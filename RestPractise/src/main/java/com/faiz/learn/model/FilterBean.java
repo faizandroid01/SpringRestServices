@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class FilterBean {
 
 	private String val1;
-	private String val2;
 	@JsonIgnore
+	private String val2;
 	private String val3;
 
 	public FilterBean(String val1, String val2, String val3) {
