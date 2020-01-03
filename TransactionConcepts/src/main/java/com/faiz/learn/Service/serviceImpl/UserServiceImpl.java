@@ -52,7 +52,8 @@ public class UserServiceImpl implements UserService {
 
 		User createdUser = createUser(userWithPosts.getUser());
 
-		createdUser = null;
+//		Activate the below lines of code to generate and throw a runtime exception . 
+		// createdUser = null;
 		if (null == createdUser)
 			throw new RuntimeException("Sql Error - SaveUser");
 
