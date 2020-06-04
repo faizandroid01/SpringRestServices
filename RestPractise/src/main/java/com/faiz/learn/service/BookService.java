@@ -1,68 +1,63 @@
 package com.faiz.learn.service;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
+import org.jboss.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.faiz.learn.model.Book;
+import com.faiz.learn.entity.Author;
+import com.faiz.learn.entity.Book;
+import com.faiz.learn.repo.BookRepo;
 
 @Service
 public class BookService {
 
-	private static List<Book> books = new ArrayList<Book>();
-	private static int bookCount = 4;
+	private static Logger LOGGER = Logger.getLogger(BookService.class);
 
-	static {
+	@Autowired
+	private BookRepo bookRepo;
 
-		books.add(new Book(1, "Learn with Python", "Dravi Jain"));
-		books.add(new Book(2, "Learn with Java", "Pranita Mamgain"));
-		books.add(new Book(3, "Learn with C Sharp", "Divya Shukla"));
-		books.add(new Book(4, "Learn with C++ ", "Himanshi Verma"));
-
-	}
+	@Autowired
+	private AuthorService authorService;
 
 	public List<Book> getBooks() {
 
-		return books;
+		return bookRepo.findAll();
 
 	}
 
 	public Book getBookWith(int id) {
-
-		for (Book book : books) {
-			if (book.getBookId() == id) {
-				return book;
-			}
-		}
-		return null;
-
+		Optional<Book> book = bookRepo.findById(id);
+		return book != null ? book.get() : null;
 	}
 
+	@Transactional(propagation = Propagation.REQUIRED)
 	public Book save(Book book) {
-		if (book.getBookId() == 0) {
-			book.setBookId(++bookCount);
-		}
 
-		books.add(book);
-		return book;
+		Author author = authorService.saveAuthor(book.getAuthor());
+
+		Book savedBook = null;
+		if (author != null)
+			savedBook = bookRepo.save(book);
+
+		return savedBook;
 	}
 
-	public Book deleteById(int id) {
+	public void deleteById(int id) {
+		bookRepo.deleteById(id);
+	}
 
-		Iterator<Book> iter = books.iterator();
+	// Completable Future Example
 
-		while (iter.hasNext()) {
-			Book book = iter.next();
-			if (book.getBookId() == id) {
-				iter.remove();
-				return book;
-			}
-		}
-
-		return null;
-
+	public CompletableFuture<Book> getBookWithIdForCompletableFuture(int id) {
+		LOGGER.info("Executing Thread Name in book Service: " + Thread.currentThread().getName() + " @ " + new Date());
+		return CompletableFuture.completedFuture(getBookWith(id));
 	}
 
 }

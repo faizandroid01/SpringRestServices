@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.faiz.learn.entity.Book;
 import com.faiz.learn.exception.ResourceNotFoundException;
-import com.faiz.learn.model.Book;
 import com.faiz.learn.service.BookService;
 
 @RestController
@@ -109,10 +109,11 @@ public class BookController {
 
 	@DeleteMapping(path = "/books/{bookId}")
 	public void deleteBookWithId(@PathVariable int bookId) {
+		bookService.deleteById(bookId);
 
-		Book book = bookService.deleteById(bookId);
-		if (book == null)
-			throw new ResourceNotFoundException("Book Id : " + bookId + " not exist .");
+//		Book book = bookService.deleteById(bookId);
+//		if (book == null)
+//			throw new ResourceNotFoundException("Book Id : " + bookId + " not exist .");
 	}
 
 }
