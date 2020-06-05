@@ -2,15 +2,18 @@ package com.faiz.learn.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Size;
 
 @Entity
+@SequenceGenerator(name = "author_seq", initialValue = 1, allocationSize = 100)
 public class Book {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "author_seq")
 	int bookId;
 	@Size(min = 2, message = "Name should have atleast 2 character .")
 	String bookName;
@@ -18,7 +21,7 @@ public class Book {
 	String description;
 
 	@OneToOne
-	Author author;
+	private Author author;
 
 	public Book() {
 	}

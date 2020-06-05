@@ -58,10 +58,10 @@ public class ChapterService {
 		return new Chapters(bookId, chaptersList);
 	}
 
-	public CompletableFuture<List<Integer>> getChaptersForBookWithCompletableFuture(int bookId) {
+	public List<Integer> getChaptersForBookWithCompletableFuture(int bookId) {
 
-		LOGGER.info(
-				"Executing Thread Name in Chapter Service : " + Thread.currentThread().getName() + " @ " + new Date());
+		LOGGER.info("Executing Thread Name in Chapter Service : Start" + Thread.currentThread().getName() + " @ "
+				+ new Date());
 
 		List<Integer> chapterList = new ArrayList<>();
 
@@ -69,7 +69,18 @@ public class ChapterService {
 			if (chapters.get(i).getBookId() == bookId)
 				chapters.get(i).getChapters().forEach(items -> chapterList.add(items));
 		}
-		return CompletableFuture.completedFuture(chapterList);
+
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		LOGGER.info("Executing Thread Name in Chapter Service: Stop" + Thread.currentThread().getName() + " @ "
+				+ new Date());
+		return chapterList;
+
 	}
 
 }

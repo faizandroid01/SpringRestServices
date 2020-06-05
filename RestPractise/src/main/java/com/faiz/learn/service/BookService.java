@@ -7,6 +7,7 @@ import java.util.concurrent.CompletableFuture;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,13 +28,11 @@ public class BookService {
 	private AuthorService authorService;
 
 	public List<Book> getBooks() {
-
 		return bookRepo.findAll();
-
 	}
 
-	public Book getBookWith(int id) {
-		Optional<Book> book = bookRepo.findById(id);
+	public Book getBookWith(int bookId) {
+		Optional<Book> book = bookRepo.findById(bookId);
 		return book != null ? book.get() : null;
 	}
 
@@ -53,11 +52,21 @@ public class BookService {
 		bookRepo.deleteById(id);
 	}
 
-	// Completable Future Example
+	public Book getBookWithIdForCompletableFuture(int id) {
 
-	public CompletableFuture<Book> getBookWithIdForCompletableFuture(int id) {
-		LOGGER.info("Executing Thread Name in book Service: " + Thread.currentThread().getName() + " @ " + new Date());
-		return CompletableFuture.completedFuture(getBookWith(id));
+		LOGGER.info("Executing Thread Name in book Service: Start " + Thread.currentThread().getName() + " @ "
+				+ new Date());
+
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		LOGGER.info(
+				"Executing Thread Name in book Service: Stop " + Thread.currentThread().getName() + " @ " + new Date());
+
+		return getBookWith(id);
 	}
 
 }

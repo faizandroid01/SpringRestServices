@@ -2,32 +2,35 @@ package com.faiz.learn.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 @Entity
+@SequenceGenerator(name="book_seq", initialValue=1, allocationSize=100)
 public class Author {
 
 	@Id
-	@GeneratedValue
-	int bookId;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE ,generator = "book_seq")
+	int authorId;
 
 	String authorName;
 
 	public Author() {
 	}
 
-	public Author(int bookId, String authorName) {
+	public Author(int authorId, String authorName) {
 		super();
-		this.bookId = bookId;
+		this.authorId = authorId;
 		this.authorName = authorName;
 	}
 
-	public int getBookId() {
-		return bookId;
+	public int getAuthorId() {
+		return authorId;
 	}
 
-	public void setBookId(int bookId) {
-		this.bookId = bookId;
+	public void setAuthorId(int authorId) {
+		this.authorId = authorId;
 	}
 
 	public String getAuthorName() {
