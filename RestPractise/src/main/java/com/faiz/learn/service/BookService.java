@@ -39,11 +39,11 @@ public class BookService {
 	@Transactional(propagation = Propagation.REQUIRED)
 	public Book save(Book book) {
 
-		Author author = authorService.saveAuthor(book.getAuthor());
-
 		Book savedBook = null;
-		if (author != null)
-			savedBook = bookRepo.save(book);
+		savedBook = bookRepo.save(book);
+
+		if (savedBook != null)
+			authorService.saveAuthor(book.getAuthor());
 
 		return savedBook;
 	}

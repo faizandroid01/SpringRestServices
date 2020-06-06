@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: 01-spring-boot-hello-world-rest-api
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: faiz
+Implementation-Vendor-Id: com.in28minutes.rest.webservices
+Build-Jdk: 1.8.0_201
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/01-spring-boot-hello-world-rest-api
+Created-By: Maven Integration for Eclipse
+
