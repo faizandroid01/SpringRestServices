@@ -1,12 +1,12 @@
 **Spring Profiles**
 
-Multiple ways to create spring profiles
+- Multiple ways to create spring profiles
 
 1. Through various application-properties / applciation.yml files .
 
-Default - application.properties / application.yml
-Dev - application-dev.properties / application-dev.yml
-Prod - application-prod.properties / application-prod.yml
+	- Default - application.properties / application.yml
+	- Dev - application-dev.properties / application-dev.yml
+	- Prod - application-prod.properties / application-prod.yml
 
 
 2. Through overriding the default application.properties file to use for other profile.
@@ -14,7 +14,8 @@ Prod - application-prod.properties / application-prod.yml
     
 3. Through Configuration classes and @Profile annotation-
 
-   eg- 	@Profile("dev")
+   eg- 	
+		@Profile("dev")
 		@Configuration
 		public class DevConfiguration {
 
@@ -25,6 +26,7 @@ Prod - application-prod.properties / application-prod.yml
 
 		}    
 		
-keyNote : Use Java Application run and run configurations to set environment variable - spring.profiles.active - dev/prod/qa to test spring profile ,
+	
+Note : Use Java Application run and run configurations to set environment variable - spring.profiles.active - dev/prod/qa to test spring profile ,
           but not the spring boot run		
     
