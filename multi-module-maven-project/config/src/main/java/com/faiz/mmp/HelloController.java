@@ -1,11 +1,7 @@
-package com.faiz.mmp.controller;
-
-import java.util.List;
+package com.faiz.mmp;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.faiz.mmp.models.Book;
 
 @RestController
 public class HelloController {

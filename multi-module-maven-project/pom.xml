@@ -21,7 +21,7 @@
 	</description>
 	<modules>
 		<module>config</module>
-		<module>data</module>
+		<module>util</module>
 	</modules>
 
 	<properties>

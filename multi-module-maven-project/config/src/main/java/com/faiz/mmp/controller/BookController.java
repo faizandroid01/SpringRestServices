@@ -1,4 +1,4 @@
-package com.faiz.mmp;
+package com.faiz.mmp.controller;
 
 import java.util.List;
 

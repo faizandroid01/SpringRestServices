@@ -7,10 +7,9 @@
 		<artifactId>multi-module-maven-project</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>com.faiz.mmp.data</artifactId>
+	<artifactId>util</artifactId>
 	<packaging>jar</packaging>
-	<name>Data</name>
-	<description>Data for project</description>
+
 
 
 </project>
