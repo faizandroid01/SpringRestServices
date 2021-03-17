@@ -1,0 +1,28 @@
+
+//UBER JAR thriugh MAVEN SHADE PLUGIN
+
+https://github.com/limegurutech/create-uber-jar/blob/master/pom.xml
+
+// MAVEN ASSEMBLY PLUGIN
+<build>
+<plugins>
+<plugin>
+    
+    <artifactId>maven-assembly-plugin</artifactId>
+	<configuration>
+	
+	<archive>
+	<manifest>
+	<mainClass>class path -com.faiz.app<mainClass>
+	</manifest>
+	</archive>
+	<descriptorRefs>
+	<descriptorRef>jar-with-dependencies<descriptorRef>
+	</descriptorRefs>
+	
+	</configuration>
+   
+</plugin>
+<plugins>
+</build>
+
